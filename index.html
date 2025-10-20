@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Tourism Maps of Australia — FIT3179</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Loading Vega, Vega-Lite and Vega-Embed -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8fafc;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      background-color: #2563eb;
+      color: white;
+      padding: 20px 10px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+    }
+
+    header p {
+      margin-top: 6px;
+      font-size: 1em;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+
+    section {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+      padding: 20px;
+    }
+
+    section h2 {
+      color: #1e3a8a;
+      margin-top: 0;
+    }
+
+    .vis {
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #555;
+      padding: 20px;
+      border-top: 1px solid #ddd;
+      background: #f1f5f9;
+    }
+    
+    a{
+    color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Tourism in Australia before Covid 19</h1>
+    <p>FIT3179 Assignment 2 - Nhu Nghia Truong
+    </p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Top countries visited Australia (2014-2020)</h2>
+      <p>
+        This world choropleth map shows the number of visitors arriving in Australia in the month January, 2014 to 2020. 
+      </p>
+      <p>
+        You may interact by sliding between the years to view diffent periods.
+      </p>
+      <div id="vis-world" class="vis"></div>
+      <p>
+        Data available in table 3 in source: 
+      </p>
+      <a href="https://www.abs.gov.au/statistics/industry/tourism-and-transport/overseas-arrivals-and-departures-australia/jul-2025">Overseas Arrivals and Departures, Australia</a>
+    </section>
+
+    <section>
+    <h2>Tourist accommodations in Victoria, Queensland, South Australia, New South Wales (2013-2015).</h2>
+    <p>
+      These choropleth maps show the number of accommodations (every type) across tourism regions in Victoria, Australia.
+      Note that the scale of these maps may not be accurate for easier interaction. 
+    </p>
+    <p>
+      You may switch between years (2013-2015) inside the map.
+      Hover over data to gain numbers.
+    </p>
+      <div id="vis-accommodation" class="vis"></div>
+      <p>
+        Data available in source: 
+      </p>
+      <a href="https://data.aurin.org.au/dataset/tra-tra-accomodation-rooms-supply-2012-2015-na">Tourism Research Australia - Accommodation Rooms Supply (Tourism Regions) 2012-2015</a>
+    </section>
+
+    <section>
+      <h2>Short-term visitor arrivals in Australia from 2014 to 2020</h2>
+      <p>These maps display short-term tourist arrivals Australia sorted by lengths of stay and purposes. 
+      </p>
+      <p>
+        Use the selector for line chart to choose visitor purposes. Hover over data to gain more insight.
+      </p>
+      <div id="vis-visitor" class="vis"></div>
+      <p>
+        Data available in table 11 in source: 
+      </p>
+      <a href="https://www.abs.gov.au/statistics/industry/tourism-and-transport/overseas-arrivals-and-departures-australia/jul-2025">Overseas Arrivals and Departures, Australia</a>
+    </section>
+
+      <section>
+      <h2>Tourism Satellite Account</h2>
+      <p>These maps display the output and gross value added to Australian GDP by tourism-related industries in millions (AUD). Data shows year 2016 to 2020. 
+      </p>
+      <p>
+        Hover over data to gain more insight of each industries. 
+      </p>
+      <div id="vis-tourismoutput" class="vis"></div>
+      <p>
+        Data available in table 03 in source: 
+      </p>
+      <a href="https://www.abs.gov.au/statistics/economy/national-accounts/tourism-satellite-account/latest-release">Tourism Satellite Account</a>
+    </section>
+
+  </main>
+
+  <footer>
+    Built with <a href="https://vega.github.io/vega-lite/" target="_blank">Vega-Lite</a> ·
+    Data sources: TRA & ABS datasets.
+  </footer>
+
+  <script>
+    // Define the map spec files
+    const worldSpec = "worldarrival.vg.json";
+    const accommodationSpec = "accomodation.vg.json";
+    const visitorSpec = "visitortoaustralia.vg.json";
+    const tourismoutputSpec = "tourism_output.vg.json";
+
+    const options = { actions: false };
+
+    // Embed the world map
+    vegaEmbed("#vis-world", worldSpec, options)
+      .catch(err => console.error("Error loading Victoria map:", err));
+
+    // Embed the Australia map
+    vegaEmbed("#vis-accommodation", accommodationSpec, options)
+      .catch(err => console.error("Error loading Australia map:", err));
+    
+      // Embed the world map
+    vegaEmbed("#vis-visitor", visitorSpec, options)
+      .catch(err => console.error("Error loading Victoria map:", err));
+
+    // Embed the Australia map
+    vegaEmbed("#vis-tourismoutput", tourismoutputSpec, options)
+      .catch(err => console.error("Error loading Australia map:", err));
+    
+  </script>
+</body>
+</html>
