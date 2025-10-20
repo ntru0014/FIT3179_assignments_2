@@ -78,7 +78,7 @@
               "3 and under 6 months",
               "6 and under 12 months"
             ],
-            "range": ["#fdbe85", "#fd8d3c", "#f16913", "#e6550d", "#d94801", "#a63603", "#7f2704"]
+            "range": ["#7fc97f", "#4eb3d3", "#3288bd", "#8856a7", "#e34a33", "#ff7f00","#66c2a5"]
           }
         },
         "tooltip": [
@@ -117,3 +117,4 @@
     }
   ]
 }
+
